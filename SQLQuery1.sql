@@ -55,3 +55,58 @@ insert into employee_payroll (Name, Basic_pay, StartDate, Gender, Phone, Address
 values ('Pritish', 60000.00, '2011-05-05', 'M', 7894561230, 'Mumbai', 'TCS',1000.00, 59000.00, 2000.00);
 update employee_payroll set Net_Pay = (Basic_Pay-Deductions-Taxable_Pay-Income_Tax);
 
+-------UC11 - NOrmalization and ER Diagram ----------------
+
+create table Company
+(compId INT PRIMARY KEY, compName varchar(20));
+
+SELECT* from Company
+
+create table employee
+(empId int PRIMARY KEY,Name varchar(20),compId INT REFERENCES Company(compId) ,Phone varchar(20),Address varchar(200),Gender char);
+
+select* from employee
+
+create Table payroll
+(empId INT REFERENCES employee(empId), BasicPay decimal,Deduction decimal, TaxablePay decimal ,IncomeTax decimal,NetPay decimal);
+
+select* from payroll
+
+CREATE TABLE DEPARTMENT(
+DeptName VARCHAR(10),
+empId INT REFERENCES employee(empId),
+deptId int PRIMARY KEY);
+
+select* from DEPARTMENT;
+
+-------------Inserting values into Company table---------------------------------
+Insert Into Company Values (1,'Capgemini');
+Insert Into Company Values (2,'TCS');
+Insert Into Company Values (3,'Infosys');
+Insert Into Company Values (4,'Amazon');
+
+SELECT* from Company
+
+-------------Inserting values into employee table---------------------------------
+Insert Into employee Values (19,'Ronit',1,'1234567891','Virar,Palghar','M');
+Insert Into employee Values (20,'Aakanksha',2,'1234567892','Vasai,Palghar','F');
+Insert Into employee Values (24,'Hitanshi',4,'1234567890','Nallasopara,Thane','F');
+Insert Into employee Values (23,'Hitansh',3,'1234567898','Vasai,Thane','M');
+
+select* from employee
+
+-------------Inserting values into DEPARTMENT table---------------------------------
+Insert Into DEPARTMENT Values ('Developer',19,04);
+Insert Into DEPARTMENT Values ('HR',23,08);
+Insert Into DEPARTMENT Values ('Sales',24,19);
+Insert Into DEPARTMENT Values ('Marketing',20,13);
+
+select* from DEPARTMENT;
+-------------Inserting values into payroll table---------------------------------
+Insert Into payroll Values (19,30000,1500,240,300,28500);
+Insert Into payroll Values (20,35000,1500,240,300,33500);
+Insert Into payroll Values (23,40000,1500,240,300,38500);
+Insert Into payroll Values (24,45000,1500,240,300,43500);
+
+select* from payroll;
+
