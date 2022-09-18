@@ -110,3 +110,58 @@ Insert Into payroll Values (24,45000,1500,240,300,43500);
 
 select* from payroll;
 
+
+
+-----------UC12-Ensuring All retrieve queries from UC6 to UC10 with new table---------
+------------Retreive_UC_4-Ability to Retrive Values From Employee_payroll Table in dataBase------------------
+select company.compId,company.compName,
+  Employee.empId,Employee.Name,Employee.Phone,Employee.Address,Employee.Gender,
+  Payroll.BasicPay,Payroll.Deduction,Payroll.TaxablePay,Payroll.IncomeTax,Payroll.NetPay,
+  department.DeptName,department.deptId 
+from Company as company
+left Join employee as Employee on company.compId = Employee.compId
+left Join payroll as Payroll on Payroll.empId = Employee.empId
+left Join DEPARTMENT as department on department.empId = Payroll.empId;
+------------Retreive_UC_5-Ability to Retrive Salry of a Particular Employee From Employee_payroll Table in dataBase------------------
+select company.compId,company.compName,
+  Employee.empId,Employee.Name,Employee.Phone,Employee.Address,Employee.Gender,
+  Payroll.BasicPay,Payroll.Deduction,Payroll.TaxablePay,Payroll.IncomeTax,Payroll.NetPay,
+  department.DeptName,department.deptId
+from Company as company
+left Join employee as Employee on company.compId = Employee.compId
+left Join payroll as Payroll on Payroll.empId = Employee.empId
+left Join DEPARTMENT as department on department.empId = Payroll.empId
+where (payroll.BasicPay=30000);
+
+------------UC_7-Ability to Find SUM,Avg,Min,Max,Count From Employee_payroll Table in dataBase------------------
+
+
+select sum(Payroll.BasicPay)as p
+from Company as company
+left Join employee as Employee on company.compId = Employee.compId
+left Join payroll as Payroll on Payroll.empId = Employee.empId
+left Join DEPARTMENT as department on department.empId = Payroll.empId;
+
+select Avg(Payroll.BasicPay)as p
+from Company as company
+left Join employee as Employee on company.compId = Employee.compId
+left Join payroll as Payroll on Payroll.empId = Employee.empId
+left Join DEPARTMENT as department on department.empId = Payroll.empId;
+
+select Min(Payroll.BasicPay)as p
+from Company as company
+left Join employee as Employee on company.compId = Employee.compId
+left Join payroll as Payroll on Payroll.empId = Employee.empId
+left Join DEPARTMENT as department on department.empId = Payroll.empId;
+
+select Max(Payroll.BasicPay)as p
+from Company as company
+left Join employee as Employee on company.compId = Employee.compId
+left Join payroll as Payroll on Payroll.empId = Employee.empId
+left Join DEPARTMENT as department on department.empId = Payroll.empId
+
+select Count(*)as p
+from Company as company
+left Join employee as Employee on company.compId = Employee.compId
+left Join payroll as Payroll on Payroll.empId = Employee.empId
+left Join DEPARTMENT as department on department.empId = Payroll.empId
