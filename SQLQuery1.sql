@@ -13,4 +13,7 @@ insert into employee_payroll (Name, Salary, StartDate) values
 ('Swapnil', 40000.00, '2018-03-05'),
 ('Morison', 50000.00, '2020-08-02');
 
+--UC4-- Retrieve employee_payroll data
+select * from employee_payroll;
+
 
