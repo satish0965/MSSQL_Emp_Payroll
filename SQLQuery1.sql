@@ -25,3 +25,10 @@ alter table employee_payroll add Gender char(1);
 update employee_payroll set Gender = 'M' where Id in (1,2,3);
 update employee_payroll set Gender = 'F' where Id in (4,5);
 
+--UC7-- find sum, average, min, max and number of male and female employees
+select sum(Salary) as sumsalary,Gender from employee_payroll group by Gender;
+select avg(Salary) as avgsalary,Gender from employee_payroll group by Gender; 
+select max(Salary) as maxsalary,Gender from employee_payroll group by Gender; 
+select min(Salary) as minsalary,Gender from employee_payroll group by Gender; 
+select count(Name) as EmployeeCount,Gender from employee_payroll group by Gender;
+
